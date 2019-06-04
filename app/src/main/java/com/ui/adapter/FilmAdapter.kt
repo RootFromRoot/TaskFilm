@@ -15,7 +15,7 @@ class FilmAdapter(var items: ArrayList<Film>): RecyclerView.Adapter<FilmsViewHol
         return FilmsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.films_list_item, parent, false))
     }
 
-    fun setComments(likes: ArrayList<Film>) {
+    fun setFilms(likes: ArrayList<Film>) {
         this.items = likes
         notifyDataSetChanged()
     }

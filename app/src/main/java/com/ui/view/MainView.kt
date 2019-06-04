@@ -6,6 +6,6 @@ interface MainView{
     var  activity: MainActivity
 
     fun setupAdapter()
-    fun setupLayoutManagers()
+    fun setupLayoutManager()
     fun setupView()
 }

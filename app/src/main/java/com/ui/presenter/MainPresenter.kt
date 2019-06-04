@@ -2,8 +2,7 @@ package com.ui.presenter
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.support.v4.app.ActivityCompat
-import com.data.API
+import com.data.util.API
 import com.data.API_KEY
 import com.data.model.Film
 import com.ui.activity.ViewFilmActivity
@@ -43,7 +42,7 @@ class MainPresenterImpl : MainPresenter {
                 try {
                     val response = requestInterface.getFilms(API_KEY).await()
                     if (response.isSuccessful) {
-                        view.activity.adapter.setComments(response.body()!!.results)
+                        view.activity.adapter.setFilms(response.body()!!.results)
                     } else Timber.i(response.code().toString())
                 } catch (e: HttpException) {
                     Timber.i(e.message)
