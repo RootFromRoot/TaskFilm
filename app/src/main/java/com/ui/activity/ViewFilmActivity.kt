@@ -8,6 +8,7 @@ import com.app.taskfilms.R
 import com.data.API_KEY
 import com.data.model.Film
 import com.data.model.Genres
+import com.data.repository.FilmDetailsRepository
 import com.ui.adapter.GenresAdapter
 import com.ui.presenter.ViewFilmImpl
 import com.ui.presenter.ViewFilmPresenter
@@ -20,6 +21,7 @@ class ViewFilmActivity : AppCompatActivity(), ViewFilmView {
     override var activity: ViewFilmActivity = this
 
     private val presenter: ViewFilmPresenter = ViewFilmImpl()
+
     var genres: ArrayList<Genres> = ArrayList()
     lateinit var adapter: GenresAdapter
 
@@ -28,8 +30,7 @@ class ViewFilmActivity : AppCompatActivity(), ViewFilmView {
         setContentView(R.layout.activity_view_film)
         presenter.bind(this)
         setupAdapter()
-
-        presenter.getFilmDetails(this)
+        presenter.getFilmDetails()
     }
 
     @SuppressLint("SetTextI18n")
