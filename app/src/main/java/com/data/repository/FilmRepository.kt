@@ -46,15 +46,11 @@ class FilmRepository(private val dao: FilmDao) {
          .observeOn(AndroidSchedulers.mainThread())*/
 
     fun isConnectingToInternet(context: Context): Boolean {
-        val connectivity = context.getSystemService(
-            Context.CONNECTIVITY_SERVICE
-        ) as ConnectivityManager
+        val connectivity = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val info = connectivity.allNetworkInfo
         if (info != null)
             for (i in info)
-                if (i.state == NetworkInfo.State.CONNECTED) {
-                    return true
-                }
+                if (i.state == NetworkInfo.State.CONNECTED) return true
         return false
     }
 }

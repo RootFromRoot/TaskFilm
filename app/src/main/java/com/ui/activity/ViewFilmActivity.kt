@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.app.taskfilms.R
 import com.data.API_KEY
+import com.data.model.Film
 import com.data.model.Genres
 import com.ui.adapter.GenresAdapter
 import com.ui.presenter.ViewFilmImpl
@@ -18,21 +19,31 @@ class ViewFilmActivity : AppCompatActivity(), ViewFilmView {
 
     override var activity: ViewFilmActivity = this
 
-    val presenter: ViewFilmPresenter = ViewFilmImpl()
-    lateinit var adapter: GenresAdapter
+    private val presenter: ViewFilmPresenter = ViewFilmImpl()
     var genres: ArrayList<Genres> = ArrayList()
+    lateinit var adapter: GenresAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupView()
-        presenter.getFilmDetails()
-    }
-
-    override fun setupView() {
         setContentView(R.layout.activity_view_film)
-
         presenter.bind(this)
         setupAdapter()
+
+        presenter.getFilmDetails(this)
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun setupView(film: Film) {
+
+        supportActionBar!!.title = film.title
+        tv_film_name.text = film.title
+        tv_budget.text = "Budget: ${film.budget}"
+        tv_overview.text = film.overview
+        tv_rate.text = "Popularity: ${film.popularity}"
+        if (film.adult!!)  tv_adult.text = "Adult: ${film.adult}"
+        else tv_adult.text = "Adult: false"
+        tv_release_date.text = "Release Date: ${film.release_date}"
+        tv_homepage.text = film.homepage
     }
 
     override fun setupAdapter() {
@@ -41,42 +52,8 @@ class ViewFilmActivity : AppCompatActivity(), ViewFilmView {
         rv_genres_list.adapter = adapter
     }
 
-    override fun setupActionBar(title: String) {
-        supportActionBar!!.title = title
-    }
-
     override fun setupLayoutManager() {
         rv_genres_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-    }
-
-    @SuppressLint("SetTextI18n")
-    override fun setupTitle(title: String) {
-        tv_film_name.text = "Popularity: $title"
-    }
-
-    override fun setupBudget(budget: Int) {
-        tv_budget.text = "Budget: $budget"
-    }
-
-    override fun setupOverview(overview: String) {
-        tv_overview.text = overview
-    }
-
-    override fun setupPopularity(popularity: String) {
-        tv_rate.text = popularity
-    }
-
-    override fun setupAdult(adult: Boolean) {
-      if (adult)  tv_adult.text = "Adult: $adult"
-        else tv_adult.text = "Adult: false"
-    }
-
-    override fun setupReleaseDate(releaseDate: String) {
-        tv_release_date.text = "Release Date: $releaseDate"
-    }
-
-    override fun setupURL(homepage: String) {
-        tv_homepage.text = homepage.toString()
     }
 
 }

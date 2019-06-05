@@ -1,5 +1,8 @@
 package com.ui.activity
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -19,15 +22,12 @@ class MainActivity : AppCompatActivity(), MainView {
 
     lateinit var adapter: FilmAdapter
     var films: ArrayList<Film> = ArrayList()
-lateinit var repository: FilmRepository
-
+   
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupView()
-        presenter.getFilmListFromServer()
-//        (activity.application as Application).db.filmDao().getAll()
-        /*repository = FilmRepository((activity.application as Application).db.filmDao())
-        repository.getAll(this)*/
+
+        presenter.getFilmList(this)
     }
 
     override fun setupView() {
@@ -40,10 +40,11 @@ lateinit var repository: FilmRepository
         setupLayoutManager()
         adapter = FilmAdapter(films)
         rv_film_list.adapter = adapter
-        adapter.onItemClick = {presenter.dispatchItemClick(it)}
+        adapter.onItemClick = { presenter.dispatchItemClick(it) }
     }
 
     override fun setupLayoutManager() {
         rv_film_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
+
 }

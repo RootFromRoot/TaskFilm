@@ -8,30 +8,31 @@ import java.net.URL
 data class Result(
     val results: ArrayList<Film>
 )
+
 @Entity(tableName = "films")
 data class Film(
 
     @PrimaryKey(autoGenerate = false)
-    var id: Int,
+    var id: Int? = 0,
     @ColumnInfo(name = "title")
-    var title: String,
+    var title: String? = "",
     @ColumnInfo(name = "budget")
-    var budget: Int,
+    var budget: String? = "",
     @ColumnInfo(name = "genres")
-    var genres: ArrayList<Genres>,
+    var genres: ArrayList<Genres>? = ArrayList(),
     @ColumnInfo(name = "overview")
-    var overview: String,
+    var overview: String? = "",
     @ColumnInfo(name = "popularity")
-    var popularity: String,
+    var popularity: String? = "",
     @ColumnInfo(name = "adult")
-    var adult: Boolean,
+    var adult: Boolean? = false,
     @ColumnInfo(name = "release_date")
-    var release_date: String,
+    var release_date: String? = "",
     @ColumnInfo(name = "homepage")
-    var homepage: String
+    var homepage: String? = ""
 )
 
 data class Genres(
-    var id: Int,
-    var name: String
+    var id: Int? = 0,
+    var name: String? = ""
 )
