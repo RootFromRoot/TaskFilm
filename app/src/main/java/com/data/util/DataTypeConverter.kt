@@ -4,8 +4,6 @@ import android.arch.persistence.room.TypeConverter
 import com.data.model.Genres
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.util.*
-import kotlin.collections.ArrayList
 
 class DateTypeConverter {
     @TypeConverter

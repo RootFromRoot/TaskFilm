@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TaskFilms</string>
+    <string name="warning_internet">You must Download data. Please, check Internet connection and retry</string>
 </resources>

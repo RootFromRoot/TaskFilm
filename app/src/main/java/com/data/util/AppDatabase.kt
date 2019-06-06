@@ -6,7 +6,7 @@ import android.arch.persistence.room.TypeConverters
 import com.data.dao.FilmDao
 import com.data.model.Film
 
-@Database(entities = [Film::class], version = 3)
+@Database(entities = [Film::class], version = 4)
 @TypeConverters(DateTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun filmDao(): FilmDao

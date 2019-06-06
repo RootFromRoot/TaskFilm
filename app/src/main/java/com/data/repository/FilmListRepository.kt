@@ -1,11 +1,11 @@
 package com.data.repository
 
 import android.annotation.SuppressLint
-import android.content.Context
 import com.data.API_KEY
 import com.data.util.API
 import com.data.util.Application
 import com.data.util.isConnectingToInternet
+import com.data.util.showErrorToast
 import com.ui.view.MainView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,11 +13,11 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import timber.log.Timber
 
-class FilmListRepository{
+class FilmListRepository {
     private val requestInterface: API = API.get()
 
     @SuppressLint("TimberExceptionLogging")
-    private fun getFilmListFromServer(view:MainView) {
+    private fun getFilmListFromServer(view: MainView) {
 
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -40,7 +40,7 @@ class FilmListRepository{
         }
     }
 
-    private fun getFilmDetailsFromServer(view:MainView, id: Int) {
+    private fun getFilmDetailsFromServer(view: MainView, id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = requestInterface.getFilmById(id, API_KEY).await()
@@ -55,16 +55,18 @@ class FilmListRepository{
         }
     }
 
-    private fun getFilmListFromDB(view:MainView) {
+    private fun getFilmListFromDB(view: MainView) {
         CoroutineScope(Dispatchers.IO).launch {
             val cachedFilms = ArrayList((view.activity.application as Application).db.filmDao().getAll())
+
             CoroutineScope(Dispatchers.Main).launch {
+                if (cachedFilms.isEmpty()) showErrorToast(view.activity, cachedFilms)
                 view.activity.adapter.setFilms(cachedFilms)
             }
         }
     }
 
-     fun getFilmList(view:MainView) {
+    fun getFilmList(view: MainView) {
         if (isConnectingToInternet(view.activity)) getFilmListFromServer(view)
         else getFilmListFromDB(view)
     }

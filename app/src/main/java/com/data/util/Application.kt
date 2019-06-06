@@ -9,8 +9,7 @@ class Application : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        db = Room.databaseBuilder(this,
-            AppDatabase::class.java, "task_film.db")
+        db = Room.databaseBuilder(this, AppDatabase::class.java, "task_film.db")
             .fallbackToDestructiveMigration()
             .build()
     }

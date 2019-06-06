@@ -27,6 +27,7 @@ interface API {
         @Query("api_key") token: String
     ): Deferred<Response<Film>>
 
+
     companion object {
         private val retrofit: Retrofit = Retrofit.Builder()
             .client(OkHttpClient.Builder()
@@ -44,5 +45,24 @@ interface API {
         fun get(): API {
             return retrofit.create(API::class.java)
         }
-    }
+
+
+       /* private val retrofitImage: Retrofit = Retrofit.Builder()
+            .client(OkHttpClient.Builder()
+                .addInterceptor(HttpLoggingInterceptor(HttpLoggingInterceptor.Logger
+                { message -> Timber.i(message) }).apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                })
+                .build()
+            )
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://image.tmdb.org/t/p/")
+            .build()
+
+        fun getInstanceImageBaseUrl(): API {
+            return retrofitImage.create(API::class.java)
+        }
+    }*/
+}
 }

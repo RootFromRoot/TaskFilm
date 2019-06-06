@@ -1,24 +1,10 @@
 package com.ui.presenter
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
-import com.data.util.API
-import com.data.API_KEY
 import com.data.model.Film
 import com.data.repository.FilmListRepository
-import com.data.util.Application
-import com.data.util.isConnectingToInternet
 import com.ui.activity.ViewFilmActivity
 import com.ui.view.MainView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.HttpException
-import timber.log.Timber
 
 interface MainPresenter {
     var view: MainView

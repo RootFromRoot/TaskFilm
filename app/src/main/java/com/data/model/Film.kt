@@ -3,7 +3,6 @@ package com.data.model
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import java.net.URL
 
 data class Result(
     val results: ArrayList<Film>
@@ -29,7 +28,8 @@ data class Film(
     @ColumnInfo(name = "release_date")
     var release_date: String? = "",
     @ColumnInfo(name = "homepage")
-    var homepage: String? = ""
+    var homepage: String? = "",
+    var backdrop_path: String? = ""
 )
 
 data class Genres(

@@ -8,13 +8,13 @@
         android:paddingRight="8dp"
         android:paddingLeft="8dp">
 
-            <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:textSize="14sp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_height="wrap_content"
-                    tools:text="@tools:sample/lorem"
-                    android:gravity="left"/>
+    <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            tools:text="@tools:sample/lorem"
+            android:gravity="left"/>
 
 </LinearLayout>

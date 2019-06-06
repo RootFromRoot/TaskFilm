@@ -7,7 +7,7 @@ import com.app.taskfilms.R
 import com.data.model.Film
 import com.ui.holder.FilmsViewHolder
 
-class FilmAdapter(var items: ArrayList<Film>): RecyclerView.Adapter<FilmsViewHolder>()  {
+class FilmAdapter(var items: ArrayList<Film>) : RecyclerView.Adapter<FilmsViewHolder>() {
 
     var onItemClick: (film: Film) -> Unit = {}
 

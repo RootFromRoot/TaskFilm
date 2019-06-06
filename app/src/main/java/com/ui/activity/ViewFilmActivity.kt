@@ -1,20 +1,17 @@
 package com.ui.activity
 
 import android.annotation.SuppressLint
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.app.taskfilms.R
-import com.data.API_KEY
 import com.data.model.Film
 import com.data.model.Genres
-import com.data.repository.FilmDetailsRepository
 import com.ui.adapter.GenresAdapter
 import com.ui.presenter.ViewFilmImpl
 import com.ui.presenter.ViewFilmPresenter
 import com.ui.view.ViewFilmView
 import kotlinx.android.synthetic.main.activity_view_film.*
-import java.net.URL
 
 class ViewFilmActivity : AppCompatActivity(), ViewFilmView {
 
@@ -41,7 +38,7 @@ class ViewFilmActivity : AppCompatActivity(), ViewFilmView {
         tv_budget.text = "Budget: ${film.budget}"
         tv_overview.text = film.overview
         tv_rate.text = "Popularity: ${film.popularity}"
-        if (film.adult!!)  tv_adult.text = "Adult: ${film.adult}"
+        if (film.adult!!) tv_adult.text = "Adult: ${film.adult}"
         else tv_adult.text = "Adult: false"
         tv_release_date.text = "Release Date: ${film.release_date}"
         tv_homepage.text = film.homepage
